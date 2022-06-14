@@ -31,7 +31,7 @@ ifeq ($(HAVE_LIBSMBIOS),yes)
 	PKLIBS += libsmbios_c
 	CFLAGS += -DFWUPDATE_HAVE_LIBSMBIOS__
 endif
-BUILDFLAGS := $(CFLAGS) -Wall -Wextra -Werror -Wno-error=cpp \
+BUILDFLAGS := $(CFLAGS) -Wall -Wextra -Werror -w -Wno-address-of-packed-member -Wno-error=cpp \
 	-Wno-unused-result -Wno-unused-function \
 	-Wsign-compare -Werror=sign-compare \
 	-fshort-wchar --std=gnu11 \

@@ -12,10 +12,10 @@ VPATH	= $(TOP)/efi
 CFLAGS	?= -Og -g3 -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 \
 	   -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 \
 	   -grecord-gcc-switches
-BUILDFLAGS	:= $(CFLAGS) -fpic -Werror -Wall -Wextra -fshort-wchar \
+BUILDFLAGS	:= $(CFLAGS) -fpic -Werror -Wno-address-of-packed-member -Wall -Wextra -fshort-wchar \
 	-fno-merge-constants -ffreestanding \
 	-fno-stack-protector -fno-stack-check --std=gnu11 -DCONFIG_$(ARCH) \
-	-I/usr/include/efi/ -I/usr/include/efi/$(ARCH)/ \
+	-I/usr/local/include/efi/ -I/usr/local/include/efi/$(ARCH)/ \
 	-iquote$(TOP)/include "-DDEBUGDIR=L\"$(DEBUGDIR)/\""
 CCLDFLAGS	?= -nostdlib -Wl,--warn-common \
 	-Wl,--no-undefined -Wl,--fatal-warnings \

@@ -331,7 +331,7 @@ untilt_slashes(char *s)
 			*p = '/';
 	return s;
 }
-
+#if 0
 typedef struct {
 	uint16_t year;
 	uint8_t month;
@@ -345,7 +345,7 @@ typedef struct {
 	uint8_t daylight;
 	uint8_t pad2;
 } efi_time_t;
-
+#endif
 #define CAPSULE_FLAGS_PERSIST_ACROSS_RESET    0x00010000
 #define CAPSULE_FLAGS_POPULATE_SYSTEM_TABLE   0x00020000
 #define CAPSULE_FLAGS_INITIATE_RESET          0x00040000
