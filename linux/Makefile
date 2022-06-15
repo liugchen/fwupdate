@@ -8,7 +8,7 @@ endif
 include $(TOP)/Make.defaults
 include $(TOP)/Make.rules
 VPATH	= $(TOP)/linux
-
+LIBFWDIR := ./lib
 LIB_LIBS= pthread
 BIN_LIBS= popt pthread
 PKLIBS	= efivar efiboot
@@ -19,11 +19,11 @@ PJONES	=
 BIN_CCLDFLAGS = $(foreach lib,$(BIN_LIBS),-l$(lib)) \
 	$(foreach pklib,$(PKLIBS), \
 		$(shell $(PKG_CONFIG) --libs-only-l --libs-only-other $(pklib))) \
-	$(LDFLAGS) -pie -fPIE -Wl,-z,relro,-z,now -L.
+	$(LDFLAGS) -pie -fPIE -Wl,-z,relro,-z,now -Wl,-rpath,'$(LIBFWDIR)' -L.
 LIB_CCLDFLAGS = $(foreach lib,$(LIB_LIBS),-l$(lib)) \
 	$(foreach pklib,$(PKLIBS), \
 		$(shell $(PKG_CONFIG) --libs-only-l --libs-only-other $(pklib))) \
-	$(LDFLAGS) -shared -fPIC -Wl,-z,relro,-z,now
+	$(LDFLAGS) -Wl,-rpath,'$(LIBFWDIR)' -shared -fPIC -Wl,-z,relro,-z,now
 
 HAVE_LIBSMBIOS := $(shell $(PKG_CONFIG) --exists libsmbios_c && \
 				echo yes || echo no)
